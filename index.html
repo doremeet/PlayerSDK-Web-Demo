@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/iband-player@0.1/dist/bundle.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="my-video" class="iband-player">
+    <video></video>
+    <div class="player-controls">
+      <span class="player-time"></span>
+      <div class="player-seek">
+        <div class="seek-bar"></div>
+        <div class="seek-buffer"></div>
+      </div>
+      <span class="player-duration"></span>
+      <div class="player-qualities">
+        <button class="qualities-toggle" type="button">Qualities</button>
+        <ul class="qualities-menu"></ul>
+      </div>
+      <button class="player-fullscreen" type="button">Fullscreen</button>
+      <button class="player-play" type="button"></button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/iband-player@0.1/dist/bundle.min.js"></script>
+  <script src="main.js"></script>
+  <script>
+    var sdk = new IBandSDK('5Dpf3hEbvuLdXBQs8hK9vjEJEdai8GaGDqne5CkomFXzczBFgopBMts');
+
+    var stream = sdk.createStream('5994219bbc454f6edf961315');
+
+    var player = createMyPlayer('my-video');
+    player.setStream(stream);
+  </script>
+</body>
+</html>
