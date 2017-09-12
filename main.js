@@ -46,10 +46,20 @@ function createMyPlayer(elemId) {
   });
 
   player.on('stateChanged', function () {
-    playerTime.innerText = getTime(player.currentPosition);
-    seekBar.style.width = (player.currentPosition / player.duration) * 100 + '%';
+    if (player.duration === 0) {
+      playerTime.innerText = 'LIVE';
 
-    playerDuration.innerText = getTime(player.duration);
+      seek.style.visibility = 'hidden';
+      playerDuration.style.visibility = 'hidden';
+    } else {
+      playerTime.innerText = getTime(player.currentPosition);
+
+      delete seek.style.visibility;
+      seekBar.style.width = (player.currentPosition / player.duration) * 100 + '%';
+
+      delete playerDuration.style.visibility;
+      playerDuration.innerText = getTime(player.duration);
+    }
   });
 
   window.addEventListener('resize', function() {
