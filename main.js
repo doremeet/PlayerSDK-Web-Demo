@@ -46,7 +46,7 @@ function createMyPlayer(elemId) {
   });
 
   player.on('stateChanged', function () {
-    if (player.duration === 0) {
+    if (player.duration === 0 && state !== IBandSDK.Player.State.INITIALIZE) {
       playerTime.innerText = 'LIVE';
 
       seek.style.visibility = 'hidden';
@@ -54,10 +54,10 @@ function createMyPlayer(elemId) {
     } else {
       playerTime.innerText = getTime(player.currentPosition);
 
-      delete seek.style.visibility;
+      seek.style.visibility = 'visible';
       seekBar.style.width = (player.currentPosition / player.duration) * 100 + '%';
 
-      delete playerDuration.style.visibility;
+      playerDuration.style.visibility = 'visible';
       playerDuration.innerText = getTime(player.duration);
     }
   });
